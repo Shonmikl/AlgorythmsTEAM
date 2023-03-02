@@ -1,4 +1,4 @@
-package _2023_03_02;
+package _2023_03_02.famous;
 
 public class Famous {
     Famous getFamous(Famous[] persons) {
