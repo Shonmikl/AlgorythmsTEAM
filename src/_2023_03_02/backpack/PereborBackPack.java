@@ -4,11 +4,11 @@ package _2023_03_02.backpack;
 public class PereborBackPack {
     public static void main(String[] args) {
         int[] weights = {3, 4, 5, 8, 9};
-        int[] prices =  {1, 6, 4, 7, 6};
+        int[] prices = {1, 6, 4, 7, 6};
 
         int maxWeight = 13;
 
-        long count = 2L << weights.length;
+        long count = 1L << weights.length;
         int maxPrice = 0;
         long maxState = 0;
 
