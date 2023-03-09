@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class GreedyBackPack {
     public static void main(String[] args) {
-        int[] weights = {3, 4, 5, 8, 9};
-        int[] prices = {1, 6, 4, 7, 6};
+        int[] weights = {3, 4, 5, 8, 9, 5, 8, 3, 4, 5, 8, 9, 5, 8, 3, 4, 5, 8, 9, 5, 8, 3, 4, 5, 8, 9, 5, 8, 3, 4};
+        int[] prices = {1, 6, 4, 7, 6, 5, 4, 1, 6, 5, 8, 9, 5, 8, 3, 4, 5, 8, 9, 5, 8, 3, 4, 5, 8, 9, 5, 8, 3, 4};
 
-        int maxWeight = 13;
+        int maxWeight = 55;
 
         ArrayList<Integer> indexes = new ArrayList<>();
         ArrayList<Integer> result = new ArrayList<>();
