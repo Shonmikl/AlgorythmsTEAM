@@ -282,8 +282,7 @@ public class AVLTree {
             System.out.println("(1) Insert");
             System.out.println("(2) Delete");
 
-            try {
-                BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
+            try (BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in))) {
                 String s = bufferRead.readLine();
 
                 if (Integer.parseInt(s) == 1) {

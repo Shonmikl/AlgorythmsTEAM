@@ -1,6 +1,8 @@
 package _2023_03_14.rbtree;// Red Black Tree implementation in Java
 
 
+import java.util.Random;
+
 // data structure that represents a node in the tree
 class Node {
     int data; // holds the key
@@ -441,15 +443,9 @@ public class RedBlackTree {
 
     public static void main(String[] args) {
         RedBlackTree bst = new RedBlackTree();
-        bst.insert(8);
-        bst.insert(18);
-        bst.insert(5);
-        bst.insert(15);
-        bst.insert(17);
-        bst.insert(25);
-        bst.insert(40);
-        bst.insert(80);
-        bst.deleteNode(25);
+        for (int i = 0; i < 55; i++) {
+            bst.insert(new Random().nextInt(188));
+        }
         bst.print();
     }
 }
