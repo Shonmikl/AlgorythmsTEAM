@@ -9,17 +9,15 @@ public class SUBSTR {
      * String jewelery = "AuiP"; --> виды драгоценностей
      * String stones = "AUUuuiHNhfgkpPkjAAaakndsdl"; --> набор камней который
      * содержит простые камни и драгоценности
-     *
-     *
      * !!! Найти сколько и каких драгоценностей в наборе камней
      */
 
     /**
-     * String[] sa = {"2, 5", "1-3, 8", "4", "5-9", "7, 9-2"};
+     * String[] sa = {"2,5", "1-3,8", "4", "5-9", "7,9-2"};
      * String[] newA = {"25", "1238", "4", "56789", "798765432"};
-     *
      * Преобразовать массив |sa| в массив |newA|
      */
+
     public static void main(String[] args) {
         String letters = "ASKJHFDGFGASBBABB";
         String text = "ABBA";
