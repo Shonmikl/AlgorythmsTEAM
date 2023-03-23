@@ -44,6 +44,15 @@ public class DigitPalindrome {
         return result * sign;
     }
 
+    /**
+     * [ 1 2 3 4 5 6 7 8 9] --sort
+     * int x = 11
+     * Есть отсортированный массив рандомных чисел
+     * Есть число
+     *
+     * Найти все пары чисел которые в сумме дают это число
+     */
+
 
     public static void main(String[] args) {
         System.out.println(reverse(123));
