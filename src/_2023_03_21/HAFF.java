@@ -19,9 +19,10 @@ public class HAFF {
                 The former Charlton goalkeeper wrestled the man to the ground and stewards led him away.
                 Dmitrovic was able to continue as Sevilla lost 2-0 on the night, but went through 3-2 on aggregate.
                 The Spanish six-time Europa League champions will play Manchester United in the quarter-finals.""";
+        String milk = "moloko";
 
         //Считаем кол-во символов в тексте
-        TreeMap<Character, Integer> freq = countFreq(text);
+        TreeMap<Character, Integer> freq = countFreq(milk);
 
         //Генерируем список листьев дерева
         ArrayList<CodeTreeNode> codeTreeNodes = new ArrayList<>();
@@ -44,11 +45,11 @@ public class HAFF {
 
         //Кодируем текст
         StringBuilder encoded = new StringBuilder();
-        for (int i = 0; i < text.length(); i++) {
-            encoded.append(codes.get(text.charAt(i)));
+        for (int i = 0; i < milk.length(); i++) {
+            encoded.append(codes.get(milk.charAt(i)));
         }
 
-        System.out.println("Размер исходной строки: " + text.getBytes().length * 8 + " бит");
+        System.out.println("Размер исходной строки: " + milk.getBytes().length * 8 + " бит");
         System.out.println("Размер сжатой строки: " + encoded.length() + " бит");
         System.out.println("Биты сжатой строки: " + encoded);
 
@@ -102,14 +103,14 @@ public class HAFF {
             } else {
                 if (left != null) {
                     String path = left.getCodeForCharacters(ch, parentPath + 0);
-                    if(path != null) {
+                    if (path != null) {
                         return path;
                     }
                 }
 
-                if(right != null) {
+                if (right != null) {
                     String path = right.getCodeForCharacters(ch, parentPath + 1);
-                    if(path != null) {
+                    if (path != null) {
                         return path;
                     }
                 }
@@ -138,7 +139,7 @@ public class HAFF {
         CodeTreeNode root = tree;
         for (int i = 0; i < encoded.length(); i++) {
             root = encoded.charAt(i) == '0' ? root.left : root.right;
-            if(root.content != null) {
+            if (root.content != null) {
                 decoded.append(root.content);
                 root = tree;
             }
