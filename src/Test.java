@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Test {
 
     /**
@@ -49,10 +47,37 @@ public class Test {
         return check == 0;
     }
 
+    /**
+     * asdffuioplkk --> fuioplk(7)
+     * drgg --> drg(3)
+     * qere --> ger(3)
+     * bbbbb --> b(1)
+     * "" --> 0
+     */
+
+    private static int getLengthStr(String str) {
+        int count = 0;
+
+        int[] seen = new int[256];
+
+        for (int i = 0, j = 0; j < str.length(); j++) {
+            i = Math.max(i, seen[str.charAt(j)]);
+            System.out.println(seen[str.charAt(j)]);
+
+            count = Math.max(count, j - i + 1);
+            seen[str.charAt(j)] = j + 1;
+            System.out.println(seen[str.charAt(j)]);
+            System.out.println("***********************************");
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
+        System.out.println(getLengthStr("abcabcd"));
 //        int a = 0b00000011;
 //        System.out.println(a);
 //        System.out.println(getBit(a));
-        System.out.println(pars(")("));
+//        System.out.println(pars(")("));
+
     }
 }
