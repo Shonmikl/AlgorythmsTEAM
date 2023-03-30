@@ -108,7 +108,7 @@ public class OLGA {
     /**
      * 128 --[1 2 8]
      * 129
-     *
+     * <p>
      * int left = 21
      * int right = 987
      * [21...........987]
@@ -116,17 +116,25 @@ public class OLGA {
 
     private static List<Integer> self(int left, int right) {
         List<Integer> list = new ArrayList<>();
-
-
-
-
+        for (int i = left; i <= right; i++) {
+            int j = i;
+            for (; j > 0; j /= 10) {
+                if ((j % 10 == 0) || (i % (j % 10) != 0)) {
+                    break;
+                }
+            }
+            if (j == 0) {
+                list.add(i);
+            }
+        }
         return list;
     }
 
     public static void main(String[] args) {
         int n = 10_000_000;
         int arr[] = {1, 2, 3, 4, 1, 5, 4, 2, 9};
-        System.out.println(minSubArray(arr, 11));
+        System.out.println(self(15, 129));
+//        System.out.println(minSubArray(arr, 11));
 
 //        long m = System.currentTimeMillis();
 //        System.out.println(miss(getArr(n)));
