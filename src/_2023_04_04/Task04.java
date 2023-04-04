@@ -1,5 +1,7 @@
 package _2023_04_04;
 
+import lombok.ToString;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -135,6 +137,98 @@ public class Task04 {
         return true;
     }
 
+    /**
+     * {2 -> 4 -> 3} + {5 -> 6 -> 4}
+     * 342 + 465 = 807
+     * 7 -> 0 -> 8
+     */
+
+    //todo fix it
+    public static ListNode addTwoNumbersVladislav(ListNode l1, ListNode l2) {
+        StringBuilder s1 = new StringBuilder();
+        StringBuilder s2 = new StringBuilder();
+
+        while (l1.next != null) {
+            s1.append(l1.val);
+            l1 = l1.next;
+        }
+
+        while (l2.next != null) {
+            s2.append(l2.val);
+            l2 = l2.next;
+        }
+
+        int a = Integer.parseInt(s1.reverse().toString());
+        int b = Integer.parseInt(s2.reverse().toString());
+
+        int sum = a + b;
+
+        String res = String.valueOf(sum);
+        s1.setLength(0);
+
+        for (int i = 0; i < res.length(); i++) {
+            s1.append(res.charAt(i));
+        }
+
+        String s = s1.reverse().toString();
+        ListNode listNode = new ListNode(s.charAt(0));
+
+        for (int i = 1; i < s.length(); i++) {
+            listNode.next = new ListNode(s.charAt(i));
+        }
+        return listNode;
+    }
+
+    public static ListNode addTwoNumbersCHATGPT(ListNode l1, ListNode l2) {
+        // Reverse the input linked lists
+        ListNode rev1 = reverseList(l1);
+        ListNode rev2 = reverseList(l2);
+
+        ListNode dummy = new ListNode(0);
+        ListNode curr = dummy;
+        int carry = 0;
+
+        // Add the corresponding digits from the two lists and construct a new list
+        while (rev1 != null || rev2 != null) {
+            int val1 = rev1 != null ? rev1.val : 0;
+            int val2 = rev2 != null ? rev2.val : 0;
+            int sum = val1 + val2 + carry;
+            carry = sum / 10;
+            curr.next = new ListNode(sum % 10);
+            curr = curr.next;
+
+            if (rev1 != null) rev1 = rev1.next;
+            if (rev2 != null) rev2 = rev2.next;
+        }
+
+        // Handle the final carry if necessary
+        if (carry > 0) {
+            curr.next = new ListNode(carry);
+        }
+
+        // Reverse the new linked list
+        return reverseList(dummy.next);
+    }
+
+    private static ListNode reverseList(ListNode head) {
+        ListNode prev = null;
+        ListNode curr = head;
+
+        while (curr != null) {
+            ListNode next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        return prev;
+    }
+
+    private void reverse(char[] s) {
+
+    }
+
+
 
     public static void main(String[] args) {
 //        String[] s = {"ab#c", "ab##", "a##c", "a#c"};
@@ -143,9 +237,30 @@ public class Task04 {
 //            //System.out.println(backSpaceEvgeny(s[i], t[i]));
 //            System.out.println(backSpace(s[i], t[i]));
 //        }
-        System.out.println(backSpace("#aaaaa#aaaaa", "aa#aaaaaaaa#"));
+//        System.out.println(backSpace("#aaaaa#aaaaa", "aa#aaaaaaaa#"));
+        /**
+         * {2 -> 4 -> 3} + {5 -> 6 -> 4}
+         * 342 + 465 = 807
+         * 7 -> 0 -> 8
+         */
+        ListNode a1 = new ListNode(2);
+        ListNode a2 = new ListNode(4);
+        ListNode a3 = new ListNode(3);
+        a1.next = a2;
+        a2.next = a3;
+
+        ListNode b1 = new ListNode(5);
+        ListNode b2 = new ListNode(6);
+        ListNode b3 = new ListNode(4);
+        b1.next = b2;
+        b2.next = b3;
+
+        System.out.println(addTwoNumbersVladislav(a1, b1));
+      //  System.out.println(addTwoNumbersCHATGPT(a1, b1));
+
     }
 }
+
 
 class ListNode {
     int val;
@@ -153,6 +268,14 @@ class ListNode {
 
     ListNode(int x) {
         val = x;
-        next = null;
+//        next = null;
+    }
+
+    @Override
+    public String toString() {
+        return "ListNode{" +
+                "val=" + val +
+                ", next=" + next +
+                '}';
     }
 }
