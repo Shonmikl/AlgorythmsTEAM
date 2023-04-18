@@ -1,9 +1,6 @@
 package _2023_04_18;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Task18 {
     /**
@@ -60,14 +57,63 @@ public class Task18 {
         return map;
     }
 
+    /**
+     * [1 200 2 201 3 202 4 5 6] -- 6
+     */
+    private static int getLongestSequenceEvgeny(int[] nums) {
+        int[] array = Arrays.stream(nums).sorted().toArray();
+        System.out.println(Arrays.toString(array));
+        int max = 1;
+        int temp = 1;
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] - array[i - 1] == 1) {
+                temp++;
+            } else if (array[i] - array[i - 1] == 0) {
+                continue;
+            } else if (temp > max) {
+                max = temp;
+                temp = 1;
+            }
+        }
+        return max;
+    }
+
+    private static int getLongestSequence(int[] nums) {
+       HashSet<Integer> numSet = new HashSet<>();
+       for (int n : nums) {
+           numSet.add(n);
+       }
+
+       int maxSequenceLength = 0;
+
+        for (int num : nums) {
+            int currentNum = num;
+            int currentSequenceLength = 1;
+
+            if (!numSet.contains(currentNum - 1)) {
+                while (numSet.contains(currentNum + 1)) {
+                    currentNum += 1;
+                    currentSequenceLength += 1;
+                }
+                maxSequenceLength = Math.max(maxSequenceLength, currentSequenceLength);
+            }
+        }
+        return maxSequenceLength;
+    }
+
     public static void main(String[] args) {
-        String s = "abccbabadbbccbacbdbcbadcbcdacbabadbbccbacbdbcbadcbcbcabdcbabadbbccbacbdbcb";
-        String tem = "cbacbdbcbadcbcbcabdcbabadbbccbacbdbcb";
+//        String s = "abccbabadbbccbacbdbcbadcbcdacbabadbbccbacbdbcbadcbcbcabdcbabadbbccbacbdbcb";
+//        String tem = "cbacbdbcbadcbcbcabdcbabadbbccbacbdbcb";
+//
+//        String s1 = "abccba";
+//        String tem1 = "abc";
+//
+//        System.out.println(getArrLeraAndVlad(s, tem));
+//        System.out.println(getArr(s, tem));
 
-        String s1 = "abccba";
-        String tem1 = "abc";
-
-        System.out.println(getArrLeraAndVlad(s, tem));
-        System.out.println(getArr(s, tem));
+        int[] a = {1, 200, 2, 1010, 1011, 201, 3, 1020, 202, 1012, 1013, 1014, 1016, 1015, 1019, 1018, 1017, 4, 6, 5};
+        int[] b = {1, 1, 2, 2, 3, 3, 4, 4, 5};
+        System.out.println(getLongestSequence(a));
+      //  System.out.println(getLongestSequence(b));
     }
 }
