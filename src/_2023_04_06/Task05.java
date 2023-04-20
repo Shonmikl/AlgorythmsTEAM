@@ -98,19 +98,27 @@ public class Task05 {
     }
 
     /**
-     * @param moves "UUDD", "LRRL"
-     * @return coordinates
+     * @param moves "UD", "LRRL"
      */
 
     public static boolean runAway(String moves) {
-        return true;
+        int x = 0;
+//        if (moves.length() % 2 != 0) {
+//            return false;
+//        }
+        for (int i = 0; i < moves.length(); i++) {
+            if ('U' == moves.charAt(i) || 'R' == moves.charAt(i)) {
+                x++;
+            } else x--;
+        }
+        return x == 0;
     }
 
     /**
      * 1 -> 2 -> 3
      * 4 -> 5 -> 6
      * output 1 - 2 - 3 - 4 - 5 - 6
-     *
+     * <p>
      * 1 -> 2 - > 7
      * 3 -> 3 -> 11
      * output 1 - 2 - 3 - 3 - 7 - 11
@@ -123,21 +131,44 @@ public class Task05 {
     /**
      * int[] arr = [-1 0 -9 8 11 -3 1 5]
      * int target = X
-     *
+     * <p>
      * Найти сумму трех чисел которые в сумме дадут target.
      * Если такого числа нет, то найти сумму трех чисел, сумма которых максимально
      * близка к значению target.
      */
 
-    public int threeSum(int[] arr, int target) {
-        return 0;
+    public static int threeSum(int[] nums, int target) {
+        int result = nums[0] + nums[1] + nums[nums.length - 1];
+        Arrays.sort(nums);
+
+        for (int i = 0; i < nums.length - 2; i++) {
+            int a = i + 1;
+            int b = nums.length - 1;
+            while (a < b) {
+                int currentSum = nums[i] + nums[a] + nums[b];
+                if (currentSum > target) {
+                    b -= 1;
+                } else {
+                    a += 1;
+                }
+                if (Math.abs(currentSum - target) < Math.abs(result - target)) {
+                    result = currentSum;
+                }
+            }
+        }
+        return result;
     }
 
 
     public static void main(String[] args) {
+        int[] arr = {0, 1, 2, 3, 4, 5, 6};
+        int target = 2;
+        System.out.println(threeSum(arr, target));
+
 
         // toLowerCaseLera("TYUuuyRE");
-        System.out.println(getHand(new int[]{1, 2, 3, 6, 2, 3, 4, 7, 9}, 3));
+        //System.out.println(getHand(new int[]{1, 2, 3, 6, 2, 3, 4, 7, 9}, 3));
+        System.out.println(runAway("UL"));
     }
 }
 
