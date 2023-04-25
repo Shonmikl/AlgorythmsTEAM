@@ -203,8 +203,6 @@ public class Task05 {
         return res;
     }
 
-
-
     public static void main(String[] args) {
 //        int[] arr = {0, 1, 2, 3, 4, 5, 6};
 //        int target = 2;
