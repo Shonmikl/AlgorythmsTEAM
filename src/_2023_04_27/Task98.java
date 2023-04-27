@@ -90,6 +90,47 @@ public class Task98 {
 
     }
 
+    public static String longestPolinEv(String s) {
+        String longestPolin = "";
+        char[] charArray = s.toCharArray();
+        int left;
+        int right;
+
+
+        for (int i = 0; i < charArray.length; i++) {
+            StringBuilder currentPol = new StringBuilder();
+
+            left = i;
+            right = charArray.length - 1;
+            while (left <= right) {
+                if (charArray[left] == charArray[right]) {
+                    currentPol.append(charArray[left]);
+                    if (left == right && currentPol.length() != 1) {
+
+                        String tempStr = currentPol.reverse().toString();
+                        currentPol.append(tempStr);
+
+                    }
+                    left++;
+                    right--;
+                } else {
+                    right--;
+                }
+            }
+//            if (currentPol.length()%2 == 0 ){
+//                currentPol.append(currentPol.reverse());
+//            } else if (currentPol.length() != 1){
+//                String temp = currentPol.reverse().substring(1,currentPol.length() - 1);
+//                currentPol.append(temp);
+//            }
+            longestPolin = longestPolin.length() > currentPol.length() ? longestPolin : currentPol.toString();
+
+        }
+
+        return longestPolin;
+
+    }
+
     public static void main(String[] args) {
         String[] arr = {"bella", "label", "roller"};
         // System.out.println(commonChars(arr));
